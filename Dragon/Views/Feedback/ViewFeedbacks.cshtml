@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Dragon.Models.Feedback>
+
+@{
+    ViewBag.Title = "ViewFeedbacks";
+    var sup = ViewBag.Supplier;
+    
+    Layout = null;
+}
+
+<h2>ViewFeedbacks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new {id=sup.SupplierID})
+</p>
+
+
+<div class="row feedback-container">
+    <div class="col-lg-2">
+        <h4>User name</h4>
+    </div>
+    <!--
+
+    <div class="col-lg-1">
+        <h4>Name</h4>
+    </div>
+        -->
+
+    <div class="col-lg-8">
+        <h4>Message</h4>
+    </div>
+    <div class="col-lg-1">
+        <h4>Created Time</h4>
+    </div>
+    <div class="col-lg-1">
+        <h4>Rating</h4>
+    </div>
+
+
+    @foreach (var item in Model)
+    {
+        
+        <div class="col-lg-2">
+            <h4>@Html.DisplayFor(modelItem => item.Subject)</h4>
+        </div>
+        <div class="col-lg-8">
+            <h4>@Html.DisplayFor(modelItem => item.Message)</h4>
+        </div>
+        <div class="col-lg-1">
+            <h4>@Html.DisplayFor(modelItem => item.CreatedTime)</h4>
+        </div>
+    <div class="col-lg-1">
+
+
+            @if (item.Rating.Equals(1))
+            {
+                <h4>&starf;&star;&star;&star;&star;</h4>
+            }
+            @if (item.Rating.Equals(2))
+            {
+                <h4>&starf;&starf;&star;&star;&star;</h4>
+            }
+            @if (item.Rating.Equals(3))
+            {
+                <h4>&starf;&starf;&starf;&star;&star;</h4>
+            }
+            @if (item.Rating.Equals(4))
+            {
+                <h4>&starf;&starf;&starf;&starf;&star;</h4>
+            }
+            @if (item.Rating.Equals(5))
+            {
+                <h4>&starf;&starf;&starf;&starf;&starf;</h4>
+            }
+
+
+        </div>
+    }
+
+</div>
+
+
+
+</table>

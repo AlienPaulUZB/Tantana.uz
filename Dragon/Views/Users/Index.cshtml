@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Dragon.Models.Users>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.displayMenu == "Yes")
+{
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <h1>Welcome Admin. Now you can create user Role.</h1>
+            <h3>
+                <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+            </h3>
+        </div>
+        
+        <div class="col-lg-6 col-sm-12">
+            <h1>List of users</h1>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleId)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleId)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "ChangeRole", new { id = item.UserID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                            @Html.ActionLink("Delete","Delete",new {id=item.UserID})
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+    
+
+}
+else
+{
+    <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
+}
+

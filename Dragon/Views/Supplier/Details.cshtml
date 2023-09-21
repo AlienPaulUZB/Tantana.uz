@@ -1,0 +1,102 @@
+﻿@model Dragon.Models.Supplier
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+
+<div>
+    <hr />
+
+    <div class="container">
+        <div class="row image-container">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                <img src="@Url.Action("ShowBackgroundImage", new {id=Model.SupplierID})" style="max-width:100%" />
+
+            </div>
+        </div>
+        <div class="row desc-container">
+            <div class="col-lg-12 col-md-12">
+                <h2>About us</h2>
+                <h4>@Html.DisplayFor(model => model.Description)</h4>
+            </div>
+            </div>
+        <div class="info-container">
+           
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-primary enquiry-btn"> @Html.ActionLink("Send Enquiry Now", "Inquiry", new { id = Model.SupplierID })</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </h2>
+                        <p>
+                            @Html.DisplayFor(model => model.Phone)
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </h2>
+                        <p>
+                            @Html.DisplayFor(model => model.Address)
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            @Html.DisplayNameFor(model => model.SocialMedia)
+                        </h2>
+                        <p>
+                            @Html.DisplayFor(model => model.SocialMedia)
+                        </p>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <h2>
+                            Starts from 
+                        </h2>
+                        <p>
+                            $ @Html.DisplayFor(model => model.Cost)
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1 video-container">
+                        @{ var youtubeLink = "https://www.youtube.com/embed" + Model.VideoLink;}
+                        
+                            <iframe src="@youtubeLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        
+                    </div>
+                </div>
+
+            
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+   
+</div>
+
+
+@{ Html.RenderAction("ViewImages", "Image", new { id = Model.SupplierID });}
+@{ Html.RenderAction("ViewFeedbacks", "Feedback", new { id = Model.SupplierID });}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SupplierID }) |
+    @Html.ActionLink("Back to List", "Index")  |
+    @Html.ActionLink("Add Photo", "GalleryModer", new { id = Model.SupplierID })
+
+</p>
+

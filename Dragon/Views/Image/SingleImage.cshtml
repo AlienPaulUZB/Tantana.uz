@@ -1,0 +1,21 @@
+﻿@model Dragon.Models.Image
+
+@{
+    ViewBag.Title = "SingleImage";
+}
+
+<h2>SingleImage</h2>
+
+<div>
+    <h4>Image</h4>
+    <hr />
+    <img src="@Url.Action("ShowImage", new {id=Model.ImageID})" style="max-width:100%" />
+</div>
+<p>
+    @if (User.IsInRole("Business"))
+    {
+        @Html.ActionLink("Choose as background", "ChooseAsBackground", new { id = Model.ImageID })
+        <br/>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

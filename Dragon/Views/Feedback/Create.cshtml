@@ -1,0 +1,202 @@
+﻿@model Dragon.Models.Feedback
+
+@{
+    ViewBag.Title = "Create";
+    
+
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Feedback</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!--
+    <div class="form-group">
+        @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SupplierId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    -->
+
+    <div class="form-group">
+        @Html.Label("User name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            <!--
+            <style type="text/css">
+                .u-star-rating-12 {
+                    list-style: none;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 60px;
+                    height: 12px;
+                    position: relative;
+                    background: url('/Content/star-regular.svg') top left repeat-x
+                }
+
+                    .u-star-rating-12 li {
+                        padding: 0px;
+                        margin: 0px;
+                        float: left
+                    }
+
+                        .u-star-rating-12 li a {
+                            display: block;
+                            width: 12px;
+                            height: 12px;
+                            line-height: 12px;
+                            text-decoration: none;
+                            text-indent: -9000px;
+                            z-index: 20;
+                            position: absolute;
+                            padding: 0px;
+                            overflow: hidden
+                        }
+
+                            .u-star-rating-12 li a:hover {
+                                background: url('/Content/star-solid.svg') left center;
+                                z-index: 2;
+                                left: 0px;
+                                border: none
+                            }
+
+                    .u-star-rating-12 a.u-one-star {
+                        left: 0px
+                    }
+
+                        .u-star-rating-12 a.u-one-star:hover {
+                            width: 12px
+                        }
+
+                    .u-star-rating-12 a.u-two-stars {
+                        left: 12px
+                    }
+
+                        .u-star-rating-12 a.u-two-stars:hover {
+                            width: 24px
+                        }
+
+                    .u-star-rating-12 a.u-three-stars {
+                        left: 24px
+                    }
+
+                        .u-star-rating-12 a.u-three-stars:hover {
+                            width: 36px
+                        }
+
+                    .u-star-rating-12 a.u-four-stars {
+                        left: 36px
+                    }
+
+                        .u-star-rating-12 a.u-four-stars:hover {
+                            width: 48px
+                        }
+
+                    .u-star-rating-12 a.u-five-stars {
+                        left: 48px
+                    }
+
+                        .u-star-rating-12 a.u-five-stars:hover {
+                            width: 60px
+                        }
+
+                    .u-star-rating-12 li.u-current-rating {
+                        top: 0 !important;
+                        left: 0 !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        outline: none;
+                        background: url('/Content/star-solid.svg') left bottom;
+                        position: absolute;
+                        height: 12px !important;
+                        line-height: 12px !important;
+                        display: block;
+                        text-indent: -9000px;
+                        z-index: 1
+                    }
+            </style>
+            <script>
+                var usrarids = {};
+                function ustarrating(id, mark) {
+                    if (!usrarids[id]) {
+                        usrarids[id] = 1;
+                        $(".u-star-li-" + id).hide();
+                        _uPostForm('', {
+                            type: 'POST', url: '/load/', data: {
+                                'a': '65',
+                                'id': id,
+                                'mark': mark,
+                                'mod': 'load',
+                                'ajax': '2'
+                            }
+                        });
+                    }
+                }
+            </script>
+
+         <ul id="uStarRating18117" class="uStarRating18117 u-star-rating-12" title="Рейтинг: 0.0/0">
+        <li id="uCurStarRating18117" class="u-current-rating uCurStarRating18117" style="width:0%;"></li>
+        <li class="u-star-li-18117"><a href="#" onclick="ustarrating('18117', 1); return false;" class="u-one-star">1</a></li>
+        <li class="u-star-li-18117"><a href="#" onclick="ustarrating('18117', 2); return false;" class="u-two-stars">2</a></li>
+        <li class="u-star-li-18117"><a href="#" onclick="ustarrating('18117', 3); return false;" class="u-three-stars">3</a></li>
+        <li class="u-star-li-18117"><a href="#" onclick="ustarrating('18117', 4); return false;" class="u-four-stars">4</a></li>
+        <li class="u-star-li-18117"><a href="" onclick="" class="u-five-stars">5</a></li>
+    </ul>
+
+        -->
+
+
+            <select name="stars" id="stars">
+                <option value=1>&starf;&star;&star;&star;&star;</option>
+                <option value=2>&starf;&starf;&star;&star;&star;</option>
+                <option value=3>&starf;&starf;&starf;&star;&star;</option>
+                <option value=4>&starf;&starf;&starf;&starf;&star;</option>
+                <option value=5>&starf;&starf;&starf;&starf;&starf;</option>
+            </select>
+            
+
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

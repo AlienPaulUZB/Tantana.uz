@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dragon.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron index-page">
+
+   
+
+    <h1>Tantana.uz</h1>
+    <p class="lead">The first wedding assistance website in Uzbekistan <br/>
+    where you can find perfect locations and services for your HAPPIEST DAY</p>
+    <p>@Html.ActionLink("See vendors", "Index", "Supplier", null, null) &raquo;</p>
+</div>
+
+@if(ViewBag.displayMenu=="Yes")
+            {
+<div class="bg-success">
+    <h1>Admin</h1>
+</div>
+            }
+
+
+<div class="container-fluid">
+<div class="row categories-row">
+    @foreach (var item in Model)
+    {
+    <div class="col-lg-3 col-md-4 col-sm-6 category-card">
+    <img style="max-width:100%;" src="@Url.Action("ShowCategoryImage",new {id=item.CategoryID})" />
+        <h2>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </h2>
+        @{ 
+            if (item.CategoryDescription.Length > 100)
+                {
+                    <p class="card-text" style="height:5vh;">@item.CategoryDescription.Remove(100) ...</p>
+                }
+                else
+                {
+                    <p class="card-text" style="min-height:5vh;">@item.CategoryDescription</p>
+                }
+        }
+        <p>
+            @Html.ActionLink("See more", "ShowByCategory", "Supplier", new { id = item.CategoryID }, null)  &raquo;
+        </p>
+    </div>
+    }
+</div>
+</div>

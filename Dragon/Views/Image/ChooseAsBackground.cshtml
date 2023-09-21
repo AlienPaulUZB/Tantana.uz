@@ -1,0 +1,39 @@
+﻿@model Dragon.Models.Image
+
+@{
+    ViewBag.Title = "ChooseAsBackground";
+}
+
+<h2>ChooseAsBackground</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Image</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ImageID)
+
+        <div class="form-group">
+            <img src="@Url.Action("ShowImage",new {id=Model.ImageID})" />
+        </div>
+        @Html.HiddenFor(model => model.SupplierID)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save as background" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

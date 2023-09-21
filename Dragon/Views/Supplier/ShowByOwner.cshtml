@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Dragon.Models.Supplier>
+
+@{
+    ViewBag.Title = "ShowByOwner";
+    
+}
+
+<h2>@User.Identity.Name</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-3 col-lg-offset-1" style="margin-bottom:15px">
+            <div class="card" style="width: 18rem;">
+
+
+
+                <img class="card-img-top" src="@Url.Action("ShowBackgroundImage", new { id = item.SupplierID})" alt="Card image cap"
+                     style="object-fit: scale-down; /* Do not scale the image */ object-position: center; /* Center the image within the element */ height: 300px; width: 300px;" />
+
+
+                <div class="card-body">
+                    <h3 class="card-title">@item.Name</h3>
+                    @{
+                        if (item.Description.Length > 90)
+                        {
+                            <p class="card-text" style="height:80px">@item.Description.Remove(90) ...</p>
+                        }
+                        else
+                        { <p class="card-text" style="min-height:80px">@item.Description</p>
+                    }
+
+                    }
+
+
+
+
+                    <button class="btn btn-info">
+                        @Html.ActionLink("See more", "Details", new
+                        {
+                            id = item.SupplierID
+})
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

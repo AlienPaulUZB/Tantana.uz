@@ -1,0 +1,31 @@
+﻿
+@model IEnumerable<Dragon.Models.Image>
+
+@{
+    ViewBag.Title = "ViewImages";
+    var supID = ViewBag.Supplier.SupplierID;
+    Layout = null;
+}
+
+<div class="container images-container">
+    <div class="container">
+        
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="content-img">
+                        <a href="@Url.Action("SingleImage",new {id=item.ImageID})">
+                            <img src="@Url.Action("ShowImage", new {id=item.ImageID})" class="img-rounded" style="width:100%;" />
+
+                        </a>
+
+                    </div>
+                </div>
+            }
+            <div class="col-lg-4 bg-info" style="width:30%; display:flex; justify-content:center; align-items:center;">
+                @Html.ActionLink("Add photo", "Create", new { id = supID })
+            </div>
+        </div>   
+    </div>
+</div>
